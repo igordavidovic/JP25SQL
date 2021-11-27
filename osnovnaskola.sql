@@ -12,8 +12,8 @@ create table radionica(
 create table dijete(
     sifra int not null primary key auto_increment,
     osoba int not null,
-    dob varchar(50) not null,
-    spol varchar(50)
+    dob int,
+    spol char(1)
 );
 
 create table radionica_dijete(
@@ -66,3 +66,24 @@ insert into osoba(sifra,ime,prezime,datumrodenja) values
 (null,'Marin','Tadić',"2010-03-21"),
 (null,'Marko','Marković',"1989-03-24"),
 (null,'Marko','Horvat',null);
+
+insert into dijete(sifra,osoba,dob,spol) values
+(null,1,null,'Ž'),
+(null,1,null,'Ž'),
+(null,1,null,'Ž'),
+(null,1,null,'M'),
+(null,1,null,'M'),
+(null,1,11,'Ž'),
+(null,1,10,'Ž'),
+(null,1,11,'Ž'),
+(null,1,10,'Ž'),
+(null,1,null,'M'),
+(null,1,null,'M'),
+(null,1,null,'Ž'),
+(null,1,null,'M'),
+(null,1,null,'M'),
+(null,1,null,'M'),
+(null,1,null,'Ž'),
+(null,1,10,'M'),
+(null,1,11,'Ž'),
+(null,1,11,'M');
