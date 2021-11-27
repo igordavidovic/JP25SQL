@@ -5,8 +5,7 @@ use osnovnaskola;
 create table radionica(
     sifra int not null primary key auto_increment,
     uciteljica int not null,
-    naziv varchar(50) not null,
-    trajanje time
+    naziv varchar(50) not null
 );
 
 create table dijete(
@@ -87,3 +86,39 @@ insert into dijete(sifra,osoba,dob,spol) values
 (null,1,10,'M'),
 (null,1,11,'Ž'),
 (null,1,11,'M');
+
+insert into uciteljica(sifra,osoba,placa,email) values
+(null,20,null,null),
+(null,21,6200,null);
+
+insert into radionica(sifra,uciteljica,naziv) values
+(null,1,'Likovni'),
+(null,2,'Muzički');
+
+
+insert into radionica_dijete(radionica,dijete) values
+(1,1),
+(1,2),
+(1,3),
+(1,4),
+(1,5),
+(1,6),
+(1,7),
+(1,8),
+(1,9),
+(1,10),
+(1,11),
+(1,12),
+(1,13),
+(2,14),
+(2,15),
+(2,16),
+(2,17),
+(2,18),
+(2,19),
+(2,1),
+(2,2),
+(2,3),
+(2,4),
+(2,5),
+(2,6);
