@@ -81,6 +81,11 @@ where c.naziv='Zagreb';
 # izvucite sve nazive zemalja čiji gradovi nemaju definiranu 
 # adresu 
 
+select c.country 
+from city a inner join address b on a.city_id=b.city_id 
+inner join country c on a.country_id =c.country_id
+where b.address2 is null;
+
 
 
 
