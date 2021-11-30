@@ -119,7 +119,7 @@ inner join cura d on c.sifra=d.decko
 inner join neprijatelj e on d.sifra=e.cura 
 inner join brat f on e.sifra=f.neprijatelj
 where d.drugiputa is null and c.vesta like '%ba%'
-order by e.haljina desc;
+order by 3 desc;
 
 select a.vesta,a.asocijalno
 from decko a inner join decko_zarucnica b on a.sifra=b.decko 
