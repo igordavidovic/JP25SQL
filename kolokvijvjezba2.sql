@@ -45,7 +45,7 @@ create table cura(
     haljina varchar(33) not null,
     drugiputa datetime not null,
     suknja varchar(38),
-    narukvica boolean,
+    narukvica int,
     introvertno boolean,
     majica varchar(40) not null,
     decko int
@@ -80,3 +80,47 @@ alter table cura add foreign key(decko) references decko(sifra);
 alter table neprijatelj add foreign key(cura) references cura(sifra);
 
 alter table brat add foreign key(neprijatelj) references neprijatelj(sifra);
+
+insert into decko(sifra,indeferentno,vesta,asocijalno) values
+(null,1,null,1),
+(null,null,'Crna vesta',0),
+(null,0,'Plava vesta',0);
+
+insert into zarucnica(sifra,narukvica,bojakose,novcica,lipa,indeferentno) values
+(null,null,'Crna',null,15.40,0),
+(null,1,'Crvena',null,13.30,1),
+(null,2,'Plava',null,12.21,0);
+
+insert into decko_zarucnica(sifra,decko,zarucnica) values
+(null,1,1),
+(null,2,2),
+(null,3,3);
+
+insert into cura(sifra,haljina,drugiputa,suknja,narukvica,introvertno,majica,decko) values
+(null,'Crna haljina','2021-10-10',null,null,null,'Crna majica',1),
+(null,'Crvena haljina','2021-10-09',null,2,1,'Crvena majica',2),
+(null,'Plava haljina','2021-10-09','Crna suknja',1,0,'Crna majica',null);
+
+insert into neprijatelj(sifra,majica,haljina,lipa,modelnaocala,kuna,jmbag,cura) values
+(null,null,'Crvena haljina',null,'Aviator',250.00,null,null),
+(null,null,'Plava haljina',null,'Rayban',350.00,null,1),
+(null,'Crna majica','Crna haljina',null,'Aviator',750.00,null,2);
+
+update prijatelj set treciputa='2020-04-30';
+
+delete from brat where ogrlica!=14;
+
+select suknja from cura where drugiputa is null;
+
+select a.novcica,f.neprijatelj,e.haljina
+from zarucnica a inner join decko_zarucnica b on a.sifra=b.zarucnica
+inner join decko c on b.decko=c.sifra 
+inner join cura d on c.sifra=d.decko 
+inner join neprijatelj e on d.sifra=e.cura 
+inner join brat f on e.sifra=f.neprijatelj
+where d.drugiputa is null and c.vesta like '%ba%'
+order by e.haljina desc;
+
+select a.vesta,a.asocijalno
+from decko a inner join decko_zarucnica b on a.sifra=b.decko 
+where decko is null;
