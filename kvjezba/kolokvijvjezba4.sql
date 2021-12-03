@@ -77,3 +77,47 @@ alter table snasa add foreign key(zena) references zena(sifra);
 alter table becar add foreign key(snasa) references snasa(sifra);
 
 alter table prijatelj add foreign key(becar) references becar(sifra);
+
+insert into zena(sifra,suknja,prstena) values
+(null,'Crna suknja',1),
+(null,'Crvena suknja',2),
+(null,'Crna suknja',3);
+
+insert into mladic(sifra,vesta) values
+(null,'Crna vesta'),
+(null,'Crvena vesta'),
+(null,'Plava vesta');
+
+insert into snasa(sifra,haljina,zena) values
+(null,'Crna haljina',1),
+(null,'Plava haljina',2),
+(null,'Crvena haljina',3);
+
+insert into becar(sifra,kratkamajica,bojaociju,snasa) values
+(null,'Crna majica','Zelena',1),
+(null,'Crna majica','Plava',2),
+(null,'Crvena majica','Smeđa',3);
+
+insert into zena_mladic(sifra,zena,mladic) values
+(null,1,1),
+(null,2,2),
+(null,3,3);
+
+update punac set majica='Osijek';
+
+delete from prijatelj where prstena>17;
+
+select haljina from snasa where treciputa is null;
+
+select a.nausnica,f.jmbag,e.kratkamajica 
+from mladic a inner join zena_mladic b on a.sifra=b.mladic 
+inner join zena c on b.zena=c.sifra 
+inner join snasa d on c.sifra=d.zena 
+inner join becar e on d.sifra=e.snasa 
+inner join prijatelj f on e.sifra=f.becar 
+where d.treciputa is not null and c.lipa!=29
+order by 3 desc;
+
+select a.lipa,a.prstena
+from zena a inner join zena_mladic b on a.sifra=b.zena 
+where b.zena is null;
