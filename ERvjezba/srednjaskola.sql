@@ -28,7 +28,7 @@ create table profesor_razred(
     razred int not null
 );
 
-alter table profesor_razred add foreign key(profesor) references(sifra);
-alter table profesor_razred add foreign key(razred) references(sifra);
+alter table profesor_razred add foreign key(profesor) references profesor(sifra);
+alter table profesor_razred add foreign key(razred) references razred(sifra);
 
-alter table ucenik add foreign key(razred) references(sifra);
+alter table ucenik add foreign key(razred) references razred(sifra);
