@@ -26,3 +26,10 @@ create table sef(
     sifra int not null primary key auto_increment,
     osoba int not null
 );
+
+alter table trgovina add foreign key(sef) references sef(sifra);
+
+alter table sef add foreign key(osoba) references osoba(sifra);
+
+alter table trgovina_osoba add foreign key(trgovina) references trgovina(sifra);
+alter table trgovina_osoba add foreign key(osoba) references osoba(sifra);
