@@ -99,3 +99,9 @@ from category a inner join film_category b on a.category_id=b.category_id
 inner join film c on b.film_id=c.film_id
 where a.name='Action' or c.rating='NC-17'
 order by 1 desc;
+
+select title, length(title)
+from film 
+where title like '%ab%'
+having length(title)<15
+order by 1 desc;
