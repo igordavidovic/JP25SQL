@@ -74,3 +74,28 @@ select * from nicer_but_slower_film_list where FID in(100,500,800,1000);
 select * from nicer_but_slower_film_list where FID>50 and FID<150;
 
 select * from nicer_but_slower_film_list where FID between 50 and 150;
+
+select concat(a.first_name,' ',a.last_name) as actor_name,c.title as movies_featured_in
+from actor a inner join film_actor b on a.actor_id=b.actor_id
+inner join film c on b.film_id=c.film_id;
+
+select concat(a.first_name,' ',a.last_name) as actor_name,c.title as movies_featured_in
+from actor a inner join film_actor b on a.actor_id=b.actor_id
+inner join film c on b.film_id=c.film_id
+where a.first_name like '%PE%';
+
+select concat(a.first_name,' ',a.last_name) as actor_name,c.title as movies_featured_in
+from actor a inner join film_actor b on a.actor_id=b.actor_id
+inner join film c on b.film_id=c.film_id
+where c.title='ANGELS LIFE';
+
+select c.title,c.description
+from category a inner join film_category b on a.category_id=b.category_id
+inner join film c on b.film_id=c.film_id
+where a.name='Action';
+
+select c.title,c.description
+from category a inner join film_category b on a.category_id=b.category_id
+inner join film c on b.film_id=c.film_id
+where a.name='Action' or c.rating='NC-17'
+order by 1 desc;
