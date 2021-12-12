@@ -30,3 +30,10 @@ create table jelo_pice(
     jelo int not null,
     pice int not null
 );
+
+alter table jelo_pice add foreign key(jelo) references jelo(sifra);
+alter table jelo_pice add foreign key(pice) references pice(sifra);
+
+alter table kategorija add foreign key(jelovnik) references jelovnik(sifra);
+
+alter table jelo add foreign key(kategorija) references kategorija(sifra);
