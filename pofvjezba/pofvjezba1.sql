@@ -48,11 +48,74 @@ create table muskarac(
 
 alter table muskarac add foreign key(neprijateljica) references neprijateljica(id);
 
+delimiter $$
+create function inti(broj int) returns varchar(255)
+begin
+	if broj between 950 and 5098
+	then 
+	return broj;
+	else
+	return 'Broj nije između 950 i 5098';
+	end if;
+end;
+$$ 
+delimiter ;
 
+delimiter $$
+create procedure unosZarucnica() 
+begin
+	for i in 1..56872
+	do
+	insert into zarucnica(id,prstena,modelnaocala,nausnica) values
+	(null,1,'Rayban',i);
+	end for; 
+end;
+$$ 
+delimiter ;
 
+delimiter $$
+create trigger unos_punca after insert on zarucnica for each row 
+begin 
+	insert into punac (id,modelnaocala,treciputa,drugiputa,novcica,narukvica) values 
+    (null,null,null,null,15.00,null),
+	(null,null,null,null,20.00,null);
+end;
+$$ 
+delimiter ;
 
+delimiter $$
+create function zadatak1(broj int) returns varchar(255)
+begin
+	if broj between 1076 and 4697
+	then 
+	return broj;
+	else
+	return 'Broj nije između 1076 i 4697';
+ 	end if;
+end;
+$$ 
+delimiter ;
 
+delimiter $$
+create procedure zadatak2()
+begin
+	for i in 1..24064
+	do
+	insert into sestra(id,introventno,carape,suknja,narukvica) values(null,true,null,null,i);
+	end for;
+end;
+$$ 
+delimiter ;
 
+delimiter $$
+create trigger zadatak3 after insert on sestra for each row
+begin
+	insert into neprijateljica (id,indiferentno,modelnaocala,maraka,kratkamajica,ogrlica) values
+	(null,true,'Ray',18.2,'Crna',null),
+	(null,false,'Ban',20.19,'Crvena',null);
+end;
+$$ 
+delimiter ;
 
 
 
